@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { FaSearch, FaBriefcase, FaUserTie, FaBuilding, FaChartLine, FaUsers, 
   FaUserCheck, FaFileAlt, FaBell, FaClipboardCheck, FaUserFriends } from "react-icons/fa";
 import { initScrollAnimation } from "../utils/scrollAnimation";
+import heroBg from "../assets/job-search.jpg";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -19,21 +20,25 @@ const Home = () => {
   return (
     <div className="bg-gray-50 min-h-screen font-sans">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-blue-900 via-blue-800 to-blue-600 text-white overflow-hidden">
-        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+      <section 
+        className="relative bg-cover bg-center bg-no-repeat text-white overflow-hidden"
+        style={{ backgroundImage: `url(${heroBg})` }}
+      >
+        {/* Dark overlay to remove blue and make text pop */}
+        <div className="absolute inset-0 bg-slate-950/75 backdrop-blur-[2px]"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32 relative z-10 flex flex-col-reverse lg:flex-row items-center gap-12">
           <div className="flex-1 text-center lg:text-left">
             <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight mb-6 leading-tight">
-              Find Your <span className="text-blue-300">Dream Job</span> Today
+              Find Your <span className="text-blue-400">Dream Job</span> Today
             </h1>
-            <p className="text-xl text-blue-100 mb-10 max-w-2xl mx-auto lg:mx-0">
+            <p className="text-xl text-gray-200 mb-10 max-w-2xl mx-auto lg:mx-0">
               Connecting top talent with the best opportunities. Whether you're looking for your next career move or the perfect candidate, we've got you covered.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <Link to="/jobs" className="px-8 py-4 text-lg font-semibold rounded-xl bg-white text-blue-700 hover:bg-gray-100 hover:shadow-lg transition-all duration-300">
+              <Link to="/jobs" className="px-8 py-4 text-lg font-semibold rounded-xl bg-blue-600 text-white hover:bg-blue-700 hover:shadow-lg shadow-blue-600/30 transition-all duration-300">
                 Find Jobs
               </Link>
-              <button onClick={handlePostJobClick} className="px-8 py-4 text-lg font-semibold rounded-xl bg-transparent border-2 border-white text-white hover:bg-white/10 hover:shadow-lg transition-all duration-300">
+              <button onClick={handlePostJobClick} className="px-8 py-4 text-lg font-semibold rounded-xl bg-white/10 backdrop-blur-md border border-white/30 text-white hover:bg-white/20 hover:shadow-lg transition-all duration-300">
                 Post a Job
               </button>
             </div>
