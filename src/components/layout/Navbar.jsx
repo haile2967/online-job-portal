@@ -27,9 +27,9 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
           <Link to="/" className="text-2xl font-bold text-blue-600 tracking-tight flex items-center" onClick={closeMenu}>
-            MyJob<span className="text-gray-800">Portal</span>
+            Dream<span className="text-gray-800">Get</span>
           </Link>
-          
+
           {/* Mobile menu button */}
           <div className="md:hidden flex items-center">
             <button onClick={toggleMenu} className="text-gray-700 hover:text-blue-600 focus:outline-none p-2">
@@ -43,12 +43,12 @@ const Navbar = () => {
             <Link to="/jobs" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">Jobs</Link>
             <Link to="/about" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">About</Link>
             <Link to="/contact" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">Contact</Link>
-            
+
             {user ? (
               <div className="flex items-center space-x-4">
                 <span className="text-sm font-semibold text-gray-500">Hi, {user.name || 'User'}</span>
-                <Link 
-                  to={user.role === 'company' ? '/company/dashboard' : user.role === 'jobseeker' ? '/jobseeker/dashboard' : '/admin/dashboard'} 
+                <Link
+                  to={user.role === 'company' ? '/company/dashboard' : user.role === 'jobseeker' ? '/jobseeker/dashboard' : '/admin/dashboard'}
                   className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors shadow-sm"
                 >
                   Dashboard
@@ -75,11 +75,11 @@ const Navbar = () => {
             <Link to="/jobs" className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md" onClick={closeMenu}>Jobs</Link>
             <Link to="/about" className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md" onClick={closeMenu}>About</Link>
             <Link to="/contact" className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md" onClick={closeMenu}>Contact</Link>
-            
+
             {user ? (
               <div className="pt-2 flex flex-col space-y-2 border-t border-gray-100">
-                <Link 
-                  to={user.role === 'company' ? '/company/dashboard' : user.role === 'jobseeker' ? '/jobseeker/dashboard' : '/admin/dashboard'} 
+                <Link
+                  to={user.role === 'company' ? '/company/dashboard' : user.role === 'jobseeker' ? '/jobseeker/dashboard' : '/admin/dashboard'}
                   className="w-full text-left block px-3 py-2 text-base font-medium text-blue-600 hover:bg-blue-50 rounded-md"
                   onClick={closeMenu}
                 >
