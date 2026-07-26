@@ -25,6 +25,8 @@ export const getJobById = async (req, res) => {
   try {
     const job = await Job.findById(req.params.id).populate('postedBy', 'name companyName email');
     if (job) {
+      job.views = (job.views || 0) + 1;
+      await job.save();
       res.json(job);
     } else {
       res.status(404).json({ message: 'Job not found' });

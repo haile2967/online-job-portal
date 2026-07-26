@@ -17,7 +17,7 @@ const DashboardView = () => {
   const [metrics, setMetrics] = useState({
     activeJobs: 0,
     totalApplications: 0,
-    profileViews: 124 // Mocked for now
+    totalViews: 0
   });
 
   useEffect(() => {
@@ -28,10 +28,13 @@ const DashboardView = () => {
           api.get('/applications/company/me')
         ]);
         
+        const totalViewsCount = jobsRes.data.reduce((acc, job) => acc + (job.views || 0), 0);
+        
         setMetrics(prev => ({
           ...prev,
           activeJobs: jobsRes.data.length,
-          totalApplications: appsRes.data.length
+          totalApplications: appsRes.data.length,
+          totalViews: totalViewsCount
         }));
       } catch (err) {
         console.error('Failed to load metrics:', err);
@@ -84,13 +87,13 @@ const DashboardView = () => {
           </div>
         </div>
         
-        {/* Profile Views Card */}
+        {/* Total Views Card */}
         <div className="relative overflow-hidden bg-white rounded-3xl p-8 shadow-sm border border-gray-100 group hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
           <div className="absolute top-0 right-0 -mt-4 -mr-4 w-32 h-32 bg-gradient-to-br from-purple-100 to-purple-50 rounded-full opacity-50 group-hover:scale-150 transition-transform duration-700 ease-out"></div>
           <div className="relative z-10 flex items-center justify-between">
             <div>
-              <p className="text-sm font-bold text-gray-500 uppercase tracking-wider mb-2 group-hover:text-purple-600 transition-colors">Profile Views</p>
-              <h3 className="text-5xl font-black text-gray-900 tracking-tight">{metrics.profileViews}</h3>
+              <p className="text-sm font-bold text-gray-500 uppercase tracking-wider mb-2 group-hover:text-purple-600 transition-colors">Total Views</p>
+              <h3 className="text-5xl font-black text-gray-900 tracking-tight">{metrics.totalViews}</h3>
             </div>
             <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-500 text-white flex items-center justify-center text-2xl shadow-lg shadow-purple-500/30 group-hover:rotate-12 transition-transform duration-300">
               <FaEye />
