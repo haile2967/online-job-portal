@@ -8,6 +8,8 @@ const userSchema = new mongoose.Schema({
   role: { type: String, enum: ['jobseeker', 'company', 'admin'], default: 'jobseeker' },
   companyName: { type: String }, // For companies
   industry: { type: String },    // For companies
+  savedJobs: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Job' }],
+  profileViews: { type: Number, default: 0 },
   createdAt: { type: Date, default: Date.now },
 });
 

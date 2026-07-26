@@ -9,17 +9,23 @@ import api from '../api/axios';
 const DashboardView = () => {
   const [metrics, setMetrics] = useState({
     appliedJobs: 0,
-    savedJobs: 3, // Mocked for now
-    profileViews: 42 // Mocked for now
+    savedJobs: 0,
+    profileViews: 0
   });
 
   useEffect(() => {
     const fetchMetrics = async () => {
       try {
-        const { data } = await api.get('/applications/me');
+        const [applicationsRes, userRes] = await Promise.all([
+          api.get('/applications/me'),
+          api.get('/auth/me')
+        ]);
+        
         setMetrics(prev => ({
           ...prev,
-          appliedJobs: data.length
+          appliedJobs: applicationsRes.data.length,
+          savedJobs: userRes.data.savedJobs ? userRes.data.savedJobs.length : 0,
+          profileViews: userRes.data.profileViews || 0
         }));
       } catch (err) {
         console.error('Failed to load metrics:', err);
